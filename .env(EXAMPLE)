@@ -1,0 +1,15 @@
+# .env file example
+
+# Generate a new secret key for Django
+SECRET_KEY='your-generated-django-secret-key'
+DEBUG=True
+
+# Your Notion Keys
+NOTION_API_KEY='secret_YOUR_NOTION_KEY'
+NOTION_MAINADMIN_DB_ID='your-mainadmin-database-id'
+NOTION_DOCTOR_DB_ID='your-doctor-database-id'
+NOTION_PATIENT_DB_ID='your-patient-database-id'
+NOTION_CONSULTATION_DB_ID='your-consultation-database-id'
+
+# Your Gemini Keys (comma-separated for rotation)
+GEMINI_API_KEYS='YOUR_GEMINI_KEY_1,YOUR_GEMINI_KEY_2'

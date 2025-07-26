@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h2 class="card-title mb-4"><i class="fas fa-clipboard-list me-2"></i>Pending Consultation Requests</h2>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr class="table-light">
+                        <th scope="col">Patient Name</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# --- THE FIX --- #}
+                    {# We now loop over the simple, pre-processed list from the view #}
+                    {% for req in pending_requests %}
+                    <tr>
+                        <td>{{ req.patient_name }}</td>
+                        <td>{{ req.request_date_formatted }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'handle_consultation' request_id=req.request_page_id action='accepted' %}" class="btn btn-sm btn-success me-2">
+                                <i class="fas fa-check me-1"></i>Accept
+                            </a>
+                            <a href="{% url 'handle_consultation' request_id=req.request_page_id action='rejected' %}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-times me-1"></i>Reject
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">No pending requests at this time.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

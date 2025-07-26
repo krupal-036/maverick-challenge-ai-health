@@ -1,0 +1,2 @@
+id,full_name,email,password_hash,phone_number,gender,date_of_birth,city,last_login,is_active
+p001,John Doe,john.doe@example.com,passhash123,555-0101,Male,1990-05-15,New York,2025-07-20,TRUE

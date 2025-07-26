@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 text-center">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold">AI for Inclusive Healthcare Access</h1>
+        <p class="fs-5 text-muted">
+            Assisting remote communities to access healthcare information, teleconsultations, and health monitoring,
+            reducing disparities in healthcare services.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body p-4 d-flex flex-column">
+                <h3 class="card-title"><i class="fas fa-robot me-2 text-primary"></i>Symptom Checker</h3>
+                <p class="text-muted">Describe your symptoms to get an AI-powered potential diagnosis.</p>
+                <form method="post" action="{% url 'chatbot' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <textarea class="form-control" name="symptoms" rows="4"
+                            placeholder="e.g., I have a headache, fever, and a runny nose..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get Analysis</button>
+                </form>
+                {% if diagnosis %}
+                <div class="mt-4 p-3 bg-light border rounded ai-analysis flex-grow-1">
+                    <h4 class="mb-3">AI Analysis Result:</h4>
+                    <div>{{ diagnosis|safe }}</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body p-4">
+                <h3 class="card-title"><i class="fas fa-notes-medical me-2 text-success"></i>Request a Consultation</h3>
+                <p class="text-muted">Choose an approved doctor to send a consultation request.</p>
+                <form method="post" action="{% url 'request_consultation' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="doctor_id" class="form-label">Select a Doctor</label>
+                        <select name="doctor_id" id="doctor_id" class="form-select" required>
+                            <option value="" disabled selected>-- Available Doctors --</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.id }}">{{ doctor.properties.full_name.rich_text.0.text.content }} -
+                                {{ doctor.properties.specialization.select.name }}</option>
+                            {% empty %}
+                            <option disabled>No doctors are available at this time.</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Send Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm mt-4">
+    <div class="card-body p-4">
+        <h3 class="card-title"><i class="fas fa-history me-2"></i>My Consultation History</h3>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr class="table-light">
+                        <th scope="col">Doctor</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date Requested</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# --- THE FIX --- #}
+                    {# We now loop over the simple, pre-processed list from the view #}
+                    {% for consultation in consultations %}
+                    <tr>
+                        <td>{{ consultation.doctor_name }}</td>
+                        <td>
+                            <span class="badge rounded-pill
+                                {% if consultation.status == 'Pending' %}bg-warning text-dark{% endif %}
+                                {% if consultation.status == 'Accepted' %}bg-success{% endif %}
+                                {% if consultation.status == 'Rejected' %}bg-danger{% endif %}
+                            ">{{ consultation.status }}</span>
+                        </td>
+                        <td>{{ consultation.request_date_formatted }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">You have not made any consultation requests
+                            yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,2 @@
+id,full_name,email,password_hash,role,last_login,is_active
+admin001,Main Admin,admin@example.com,bcrypt_hash_placeholder,mainadmin,2025-07-20,TRUE

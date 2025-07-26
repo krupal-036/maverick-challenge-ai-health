@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: maverick-challenge-ai-health
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn aihealth.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: False
+      - key: NOTION_API_KEY
+        fromSecret: true
+      - key: NOTION_MAINADMIN_DB_ID
+        fromSecret: true
+      - key: NOTION_DOCTOR_DB_ID
+        fromSecret: true
+      - key: NOTION_PATIENT_DB_ID
+        fromSecret: true
+      - key: NOTION_CONSULTATION_DB_ID
+        fromSecret: true
+      - key: GEMINI_API_KEYS
+        fromSecret: true

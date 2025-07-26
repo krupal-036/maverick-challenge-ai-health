@@ -1,0 +1,2 @@
+id,full_name,email,password_hash,phone_number,medical_registration_number,specialization,experience_years,city,bio,is_approved,last_login,is_active
+d001,Dr. Jane Smith,jane.smith@example.com,passhash456,555-0102,MD-12345,Cardiology,10,Los Angeles,"Experienced Cardiologist.",FALSE,2025-07-20,TRUE
