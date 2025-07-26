@@ -2,12 +2,13 @@ services:
   - type: web
     name: maverick-challenge-ai-health
     env: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "gunicorn aihealth.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.4
       - key: SECRET_KEY
-        generateValue: true 
+        generateValue: true
       - key: DEBUG
-        value: False 
+        value: False
