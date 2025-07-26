@@ -4,22 +4,12 @@ services:
     env: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn aihealth.wsgi:application"
+    envVarGroups:
+      - name: ai-health-secrets
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.4
       - key: SECRET_KEY
         generateValue: true
-      - key: DEBUG
+      - key: DEBUG 
         value: False
-      - key: NOTION_API_KEY
-        fromSecret: true
-      - key: NOTION_MAINADMIN_DB_ID
-        fromSecret: true
-      - key: NOTION_DOCTOR_DB_ID
-        fromSecret: true
-      - key: NOTION_PATIENT_DB_ID
-        fromSecret: true
-      - key: NOTION_CONSULTATION_DB_ID
-        fromSecret: true
-      - key: GEMINI_API_KEYS
-        fromSecret: true
