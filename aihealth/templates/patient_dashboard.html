@@ -49,8 +49,12 @@
                         <select name="doctor_id" id="doctor_id" class="form-select" required>
                             <option value="" disabled selected>-- Available Doctors --</option>
                             {% for doctor in doctors %}
-                            <option value="{{ doctor.id }}">{{ doctor.properties.full_name.rich_text.0.text.content }} -
-                                {{ doctor.properties.specialization.select.name }}</option>
+                            <option value="{{ doctor.id }}">
+                                {{ doctor.properties.full_name.rich_text.0.text.content }} - 
+                                {{ doctor.properties.specialization.select.name }}, 
+                                {{ doctor.properties.city.rich_text.0.text.content }} | Mo: 
+                                {{ doctor.properties.phone_number.phone_number }}
+                            </option>
                             {% empty %}
                             <option disabled>No doctors are available at this time.</option>
                             {% endfor %}
@@ -76,8 +80,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {# --- THE FIX --- #}
-                    {# We now loop over the simple, pre-processed list from the view #}
                     {% for consultation in consultations %}
                     <tr>
                         <td>{{ consultation.doctor_name }}</td>
