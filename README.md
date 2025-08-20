@@ -3,8 +3,10 @@
 [![Status](https://img.shields.io/badge/Status-Live-brightgreen)](https://maverick-challenge-ai-health.onrender.com/)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-4.2-092E20?logo=django)](https://www.djangoproject.com/)
+[![Maverick Effect](https://img.shields.io/badge/Recognition-Shortlisted%20@Maverick_Effect%20Ai_Challenge-orange)](#)
 
-**Live Application URL: [https://maverick-challenge-ai-health.onrender.com](https://maverick-challenge-ai-health.onrender.com)**
+
+**Live Web Application URL: [https://maverick-challenge-ai-health.onrender.com](https://maverick-challenge-ai-health.onrender.com)**
 
 This project is a submission for the **Maverick Effect AI Challenge**, addressing the problem statement: **"AI for Inclusive Healthcare Access"**.
 
@@ -183,5 +185,3 @@ This project is configured for a seamless "Infrastructure as Code" deployment on
     *   Connect the GitHub repository you just created. Render will automatically detect and parse your `render.yaml` file.
 3.  **Add Secrets**: Before finalizing, create a new **Environment Group** to store your secrets. Add all the key-value pairs from your local `.env` file here. Render will inject them securely during the build. **Do not commit your `.env` file.**
 4.  **Deploy**: Click **"Create New Blueprint Instance"**. Render will automatically run the `build.sh` script to set up your application and then use the `startCommand` to launch it.
-
-Any future `git push` to your main branch will trigger a new automatic deployment.
