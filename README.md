@@ -4,9 +4,14 @@
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-4.2-092E20?logo=django)](https://www.djangoproject.com/)
 [![Maverick Effect](https://img.shields.io/badge/Recognition-Shortlisted%20@Maverick_Effect%20Ai_Challenge-orange)](#)
+[![Deployment](https://img.shields.io/badge/Deployment-Render-blue?logo=render)](https://render.com/)
 
-
-**Live Web Application URL: [https://maverick-challenge-ai-health.onrender.com](https://maverick-challenge-ai-health.onrender.com)**
+## ↗️ Live Demo: [maverick-challenge-ai-health.onrender.com](https://maverick-challenge-ai-health.onrender.com/)
+<div align="center" style="display: flex; flex-direction: column; border: none; padding: 0; margin: 0; line-height: 0;">
+  <img src="https://github.com/user-attachments/assets/05fbde38-1700-4355-913c-0cc8829418a8" alt="Screenshot 1" style="width: 100%; display: block; margin: 0; padding: 0; border: none;">
+  <img src="https://github.com/user-attachments/assets/103a6dd9-1613-4668-8c17-07f00cc3a08d" alt="Screenshot 2" style="width: 100%; display: block; margin: 0; padding: 0; border: none;">
+  <img src="https://github.com/user-attachments/assets/2235e193-2ef5-4aee-999e-5a4ed0d2a733" alt="Screenshot 3" style="width: 100%; display: block; margin: 0; padding: 0; border: none;">
+</div>
 
 This project is a submission for the **Maverick Effect AI Challenge**, addressing the problem statement: **"AI for Inclusive Healthcare Access"**.
 
