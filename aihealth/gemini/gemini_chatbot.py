@@ -1,4 +1,4 @@
-import google.generativeai as genai
+from google import genai
 from .api_key_rotator import ApiKeyRotator
 
 class GeminiChatbot:
@@ -11,17 +11,20 @@ class GeminiChatbot:
         while True:
             current_key = self.key_rotator.get_key()
             try:
-                genai.configure(api_key=current_key)
-                model = genai.GenerativeModel('gemini-1.5-flash')
+                # NEW: Initialize the Client
+                client = genai.Client(api_key=current_key)
                 
-                prompt = f"""
-                Analyze the following patient symptoms and provide a potential diagnosis and recommendations.
-                Structure the response in two parts: 'Potential Diagnosis' and 'Recommendations'.
-                Be concise and clear. This is for informational purposes and not a substitute for professional medical advice.
-                Symptoms: "{symptoms}"
-                """
+                # UPDATED: Added 'models/' prefix to the model name
+                response = client.models.generate_content(
+                    model='models/gemini-3-flash-preview', 
+                    contents=f"""
+                    Analyze the following patient symptoms and provide a potential diagnosis and recommendations.
+                    Structure the response in two parts: 'Potential Diagnosis' and 'Recommendations'.
+                    Be concise and clear. This is for informational purposes and not a substitute for professional medical advice.
+                    Symptoms: "{symptoms}"
+                    """
+                )
                 
-                response = model.generate_content(prompt)
                 return response.text
 
             except Exception as e:
